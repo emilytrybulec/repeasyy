@@ -58,9 +58,9 @@ workflow REPEAT_CURATION {
 
         if (params.repeat_masker == true){
             if(params.species == null){
-                REPEAT_MASKER_2(TE_TRIMMER.out.fasta, ch_genome_fasta, [], params.soft_mask)
+                REPEAT_MASKER_2(MC_HELPER.out.fasta, ch_genome_fasta, [], params.soft_mask)
             } else {
-                REPEAT_MASKER_2(TE_TRIMMER.out.fasta, ch_genome_fasta, params.species, params.soft_mask)
+                REPEAT_MASKER_2(MC_HELPER.out.fasta, ch_genome_fasta, params.species, params.soft_mask)
             }
         }
     }
