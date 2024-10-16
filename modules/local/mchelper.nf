@@ -19,6 +19,9 @@ process MC_HELPER {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
+    source /opt/conda/etc/profile.d/conda.sh
+    conda activate MCHelper
+
     python3 /opt/MCHelper/MCHelper.py \\
         -l $lib \\
         -o ${prefix} \\
