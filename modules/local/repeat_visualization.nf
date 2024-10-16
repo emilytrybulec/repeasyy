@@ -3,9 +3,7 @@ process REPEAT_VIEW {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/repeatmasker:4.1.5--pl5321hdfd78af_0' :
-        'biocontainers/repeatmasker:4.1.5--pl5321hdfd78af_0' }"
+    container 'library://etrybulec/te_tools/repeatmasker'
 
     input:
     tuple val(meta), path(align)
@@ -22,11 +20,11 @@ process REPEAT_VIEW {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    /usr/local/share/RepeatMasker/util/calcDivergenceFromAlign.pl \\
+    /opt/RepeatMasker/util/calcDivergenceFromAlign.pl \\
         -s ${prefix} \\
         $align
 
-    /usr/local/share/RepeatMasker/util/createRepeatLandscape.pl \\
+    /opt/RepeatMasker/util/createRepeatLandscape.pl \\
         -div ${prefix} \\
         -twoBit $twoBit > ${prefix}.html
 
