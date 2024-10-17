@@ -4,8 +4,8 @@ process REPEAT_MASKER_2 {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/repeatmasker:4.1.5--pl5321hdfd78af_1' :
-        'biocontainers/repeatmasker:4.1.5--pl5321hdfd78af_1' }"
+        'https://depot.galaxyproject.org/singularity/repeatmasker:4.1.7p1--pl5321hdfd78af_1' :
+        'biocontainers/repeatmasker:4.1.7p1--pl5321hdfd78af_1' }"
 
     input:
     tuple val(meta), path(te_curation_fasta)
